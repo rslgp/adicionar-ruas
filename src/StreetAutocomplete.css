@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-results {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.search-results li {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 0px;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+    .search-container {
+        padding: 10px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    #motorista,
+    #street-input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .search-results li {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

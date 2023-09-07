@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './StreetAutocomplete.css';
 import axios from 'axios';
 
 import { initializeApp } from "firebase/app";
@@ -20,10 +21,10 @@ const db = getDatabase(app);
 
 //import { GoogleSpreadsheet } from 'google-spreadsheet';
 
-const MAPBOX_TOKEN = 'pk.eyJ1IjoicmVpZmVsMSIsImEiOiJjbGx6aGllYzQwejZrM2VsZXQ2Y2VrcnowIn0.3E3iuzklJHOb8u_TEn00tQ'; // Replace with your actual Mapbox API token
+const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // Replace with your actual Mapbox API token
 //const SPREADSHEET_ID = '1JEPaIdS9SxNOcYc5nzLPi35rU6f3zpUfC9s6QlMSZvI'; // Replace with your Google Spreadsheet ID
 //const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
-const MONGODB_URI = process.env.REACT_APP_MONGODB_URI; // Replace with your MongoDB connection URI
+//const MONGODB_URI = process.env.REACT_APP_MONGODB_URI; // Replace with your MongoDB connection URI
 
 function StreetAutocomplete() {
   const [query, setQuery] = useState('');
@@ -85,7 +86,11 @@ function StreetAutocomplete() {
   document.body.removeChild(textArea);
 
 try {
-	set(ref(db, 'streets/'+street), {
+	var numero = ""
+	if(document.getElementById("numero").value){
+		numero = document.getElementById("numero").value
+	}
+	set(ref(db, 'streets/'+numero+" "+street), {
     endereco: street,
 	hora: new Date().toISOString(),
 	nome:document.getElementById("motorista").value
@@ -116,32 +121,27 @@ try {
   };
 
   return (
-    <div>
-      <input
-		id="motorista"
-        type="text"
-        placeholder="Insira seu nome"
-		style={{"height":"28px"}}
-      /><br/><br/>
-      <input
-        type="text"
-        placeholder="Enter a street name"
-        value={query}
-        onChange={handleChange}
-		style={{"height":"28px"}}
-      />
-      <ul>
-        {streets.map((street, index) => (
-          <>
-          <br/>
-          <li key={index} onClick={() => handleSelect(street)}>{street}</li>
-          </>
-        ))}
-      </ul>
-      {selectedStreet && (
-        <p>Copied: {selectedStreet}</p>
-      )}
-    </div>
+	<>
+		<h3 style={{"text-align":"center"}}>Insira sua rua no projeto</h3>
+		<div className="search-container">
+			<div className="search-input">
+				<input id="motorista" type="text" placeholder="Insira seu nome"/>
+				<input id="numero" type="text" placeholder="Insira o numero (opcional)"/>
+				<input type="text" id="street-input" placeholder="Insira a rua" value={query} onChange={handleChange}/>
+				  <ul className="search-results" >
+					{streets.map((street, index) => (
+					  <>
+					  <br/>
+					  <li key={index} onClick={() => handleSelect(street)}>{street}</li>
+					  </>
+					))}
+				  </ul>
+				  {selectedStreet && (
+					<p>Copied: {selectedStreet}</p>
+				  )}
+			</div>
+		</div>
+	</>	
   );
 }
 
