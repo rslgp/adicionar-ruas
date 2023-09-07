@@ -91,7 +91,7 @@ try {
 	if(document.getElementById("numero").value){
 		numero = document.getElementById("numero").value
 	}
-	set(ref(db, 'streets/'+numero+" "+street), {
+	set(ref(db, 'streets/'+numero+": "+street), {
     endereco: street,
 	hora: new Date().toISOString(),
 	nome:document.getElementById("motorista").value,
@@ -130,7 +130,7 @@ try {
 		<div className="search-container">
 			<div className="search-input">
 				<input id="motorista" type="text" placeholder="Insira seu nome"/>
-				<input id="numero" type="text" placeholder="Insira o numero (opcional)"/>
+				<input id="numero" type="number" placeholder="Insira seu whatsapp"/>
 				<input type="text" id="street-input" placeholder="Insira a rua" value={query} onChange={handleChange}/>
 				  
         {selectedStreet && (
