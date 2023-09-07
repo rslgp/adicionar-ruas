@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/adicionar-ruas/static/css/main.a4053fab.css",
-    "main.js": "/adicionar-ruas/static/js/main.02e590bc.js",
+    "main.js": "/adicionar-ruas/static/js/main.a1bd1a87.js",
     "static/js/787.b3b6fd50.chunk.js": "/adicionar-ruas/static/js/787.b3b6fd50.chunk.js",
     "index.html": "/adicionar-ruas/index.html",
     "main.a4053fab.css.map": "/adicionar-ruas/static/css/main.a4053fab.css.map",
-    "main.02e590bc.js.map": "/adicionar-ruas/static/js/main.02e590bc.js.map",
+    "main.a1bd1a87.js.map": "/adicionar-ruas/static/js/main.a1bd1a87.js.map",
     "787.b3b6fd50.chunk.js.map": "/adicionar-ruas/static/js/787.b3b6fd50.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a4053fab.css",
-    "static/js/main.02e590bc.js"
+    "static/js/main.a1bd1a87.js"
   ]
 }
