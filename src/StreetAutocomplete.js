@@ -67,11 +67,11 @@ function StreetAutocomplete() {
   const handleSelect = async (street) => {
     setSelectedStreet(street);
 
+/*
     const textArea = document.createElement('textarea');
   textArea.value = street;
   document.body.appendChild(textArea);
   textArea.select();
-
   try {
     const success = document.execCommand('copy');
     if (success) {
@@ -84,6 +84,7 @@ function StreetAutocomplete() {
   }
 
   document.body.removeChild(textArea);
+*/
 
 try {
 	var numero = ""
@@ -93,13 +94,16 @@ try {
 	set(ref(db, 'streets/'+numero+" "+street), {
     endereco: street,
 	hora: new Date().toISOString(),
-	nome:document.getElementById("motorista").value
+	nome:document.getElementById("motorista").value,
+  num: numero
   });
 	
     // Push the selected street to the Realtime Database
     console.log('Inserted:', street);
+    alert("sucesso no envio");
   } catch (error) {
     console.error('Error inserting data:', error);
+    alert("erro no envio");
   }
   //(async function main(self) {
   //  //google-spreadsheet
@@ -128,7 +132,12 @@ try {
 				<input id="motorista" type="text" placeholder="Insira seu nome"/>
 				<input id="numero" type="text" placeholder="Insira o numero (opcional)"/>
 				<input type="text" id="street-input" placeholder="Insira a rua" value={query} onChange={handleChange}/>
-				  <ul className="search-results" >
+				  
+        {selectedStreet && (
+					<p>Clicado: {selectedStreet}</p>
+				  )}
+
+          <ul className="search-results" >
 					{streets.map((street, index) => (
 					  <>
 					  <br/>
@@ -136,9 +145,6 @@ try {
 					  </>
 					))}
 				  </ul>
-				  {selectedStreet && (
-					<p>Copied: {selectedStreet}</p>
-				  )}
 			</div>
 		</div>
 	</>	
